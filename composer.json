@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Cadastro\\Conexao\\": "lib/",
+            "Cadastro\\Produto\\": "lib/",
+            "Cadastro\\Decorator\\": "lib/"
+        }
+    }
+}

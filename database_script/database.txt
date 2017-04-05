@@ -1,0 +1,49 @@
+CREATE SCHEMA `produtos` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE `produtos`.`categoria` (
+  `idcategoria` INT NULL AUTO_INCREMENT,
+  `categoria` VARCHAR(45) NOT NULL,
+  `ativo` INT NOT NULL,
+  PRIMARY KEY (`idcategoria`));
+  
+INSERT INTO `produtos`.`categoria`
+(`categoria`,
+`ativo`)
+VALUES
+(
+'ROUPA',
+1);
+
+INSERT INTO `produtos`.`categoria`
+(`categoria`,
+`ativo`)
+VALUES
+(
+'COMIDA',
+1);
+
+INSERT INTO `produtos`.`categoria`
+(`categoria`,
+`ativo`)
+VALUES
+(
+'CASA',
+1);
+
+
+CREATE TABLE `produtos`.`produto` (
+  `idproduto` INT NOT NULL AUTO_INCREMENT,
+  `produto` VARCHAR(45) NOT NULL,
+  `idcategoria` INT NOT NULL,
+  `quantidade` INT NOT NULL,
+  `preco` REAL NOT NULL,
+  `dtcriacao` DATETIME NOT NULL,
+  `dtalteracao` DATETIME NOT NULL,
+  `ativo` INT NOT NULL,
+  PRIMARY KEY (`idproduto`),
+  INDEX `PK_CATEGORIA_idx` (`idcategoria` ASC),
+  CONSTRAINT `PK_CATEGORIA`
+    FOREIGN KEY (`idcategoria`)
+    REFERENCES `produtos`.`categoria` (`idcategoria`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

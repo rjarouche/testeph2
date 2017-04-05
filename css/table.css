@@ -1,0 +1,13 @@
+/*Css para personalizar as tabelas*/
+.table thead {
+    background-color:grey;
+    color:white;
+}
+
+.tdNumber{
+    text-align: right;
+}
+
+.tdDate,.tdIcon{
+    text-align: center;
+}
