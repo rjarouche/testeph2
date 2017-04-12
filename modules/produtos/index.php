@@ -28,7 +28,6 @@ require '../../vendor/autoload.php';
   <!--Ações de js da página-->
   <script src="js/ajaxFunctions.js" type="text/javascript"></script>
   <script src="js/actions.js" type="text/javascript"></script>
-  
 </head>
 <body>
 <div class="container">

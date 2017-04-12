@@ -13,13 +13,6 @@ class Database
     /*Evita que a classe seja clonada*/
     private function __clone()
     {}
-
-    private static $dbtype = "mysql";
-    private static $host = "localhost";
-    private static $port = "3306";
-    private static $user = "root";
-    private static $password = "";
-    private static $db = "produtos";
     public static $conn;
 
     // Singleton para sempre pegar uma conexão já existente
@@ -28,7 +21,7 @@ class Database
         try
         {
             if (!isset(static::$conn)) {
-                static::$conn = new \PDO(static::$dbtype . ":host=" . static::$host . ";port=" . static::$port . ";dbname=" . static::$db.";charset=utf8", static::$user, static::$password);
+                static::$conn = new \PDO(Config::getConfig('dbtype') . ":host=" . Config::getConfig('host') . ";port=" . Config::getConfig('port') . ";dbname=" . Config::getConfig('db').";charset=utf8", Config::getConfig('user'), Config::getConfig('password'));
             }
         } catch (PDOException $i) {
             //se houver exceção, exibe
