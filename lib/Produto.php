@@ -38,7 +38,7 @@ class Produto extends Modelo
     {
         return $this->ativo;
     }
-
+    
     public function getQuantidade()
     {
         return $this->quantidade;

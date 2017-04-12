@@ -4,7 +4,7 @@ $(function(){
    $('#txtCodigo').mask('#######');
    $('#txtQtd').mask('#######');
    $('#txtPreco').mask('#.##0,00',{reverse: true});
-   
+
    
    //Evento ao chamar modal
    $('#modalCadastro').on('show.bs.modal', function(e) {
@@ -17,6 +17,11 @@ $(function(){
    $('.clsCasdastro').click(function(){
           openModal($(this).attr('act'),$(this).attr('href'));
    });
+     
+    $('.desativa').click(function(){
+       desativaProduto($(this).attr('href'));
+    });  
+     
      
    //Botão salvar do modal 
    $('#btnSave').click(function(){
@@ -58,16 +63,16 @@ $(function(){
       pesquisaProduto();     
    });
    
-   
-      
-
-
 });
 
+$(document).ajaxStart(
+  $.blockUI({ message: 'Aguarde!!!!',
+          css: { backgroundColor: '#f00', color: '#fff'}
+} 
+)).ajaxComplete( $.unblockUI);
 
-$(document).ajaxStart($.blockUI({ message: 'Aguarde!!!!',
-                                  css: { backgroundColor: '#f00', color: '#fff'}
-                                })).ajaxStop($.unblockUI);
+
+
 
 
 function openModal(act,url){
@@ -78,8 +83,10 @@ function openModal(act,url){
           $('#frmCadastra')[0].reset();
           if(act == 'new' ){
               $('#modalCadastro-header').html('Cadastro de produto');
+              $('.desativa').hide();
           }else{
               $('#modalCadastro-header').html('Editar produto');
+              $('.desativa').show();
               formProduto(url);
           } 
     

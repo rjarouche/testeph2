@@ -14,16 +14,20 @@ $idproduto = $_POST["ptxtCodigo"];
 $produto=$_POST["ptxtDescricao"];
 $idcategoria=$_POST["pselectCategoria"];
 
+session_start();
 
-try {
-    $retorno['html'] = utf8_encode(Cadastro\Decorator\ProdutoDecorator::getProdutosTable($produtos->getFilteredProdutos($idproduto,$produto,$idcategoria)));
-} catch (Exception $ex) {
-    $retorno['erro'] = utf8_encode(print_r($ex,true));
+if($_SESSION['token'] === $_POST['ptoken'] ){
+
+
+    try {
+        $retorno['html'] = utf8_encode(Cadastro\Decorator\ProdutoDecorator::getProdutosTable($produtos->getFilteredProdutos($idproduto,$produto,$idcategoria)));
+    } catch (Exception $ex) {
+        $retorno['erro'] = utf8_encode(print_r($ex,true));
+    }
+
+
+    echo json_encode($retorno);
+
 }
-
-
-echo json_encode($retorno);
-
-
 
 

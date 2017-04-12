@@ -37,13 +37,10 @@ class Validation
         }
     }
 
-    public static function validateString(&$valor, $msg)
+    public static function validateString(&$valor)
     {
         $valor = utf8_decode($valor);
         $valor = filter_var($valor, FILTER_SANITIZE_STRING);
-        if (trim($valor) == "") {
-            throw new \Exception("String não pode ser vazia " . $msg);
-        }
     }
     
     public static function validateDate($valor, $msg ,$format = 'Y-m-d H:i:s')

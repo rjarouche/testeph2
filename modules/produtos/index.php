@@ -6,8 +6,11 @@ require '../../vendor/autoload.php';
  */
   $cat = new Cadastro\Conexao\CategoriaDAO();
   $categorias = $cat->getAllActiveCategorias();  
-  
+  $token = md5('secret'. rand());
+  session_start();
+  $_SESSION['token'] = $token;
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,9 +60,10 @@ require '../../vendor/autoload.php';
             </div> 
         </div> 
         <div class="row">
-           <div class="col-md-offset-8 col-md-2"><button type="button" class="btn btn-default btn-block" id="btnPesq"><span class="glyphicon glyphicon-search"></span>&nbsp;Pesquisar</button></div> 
+           <div class="col-md-offset-8 col-md-2"><button type="button" class="btn btn-secondary btn-block" id="btnPesq"><span class="glyphicon glyphicon-search"></span>&nbsp;Pesquisar</button></div> 
            <div class="col-md-2"><button type="button" class="btn btn-primary btn-block clsCasdastro" id="btnNovo" act="new"><span class="glyphicon glyphicon-plus"></span>&nbsp;Novo</button></div> 
         </div> 
+        <input type="hidden" name="ptoken" value="<?php echo $token?>">
     </form>    
 </div>
 
@@ -87,6 +91,7 @@ require '../../vendor/autoload.php';
         <div class="modal-body">  <!-- Corpo do Crud -->
             <div class="container">
                 <form action="POST" name="frmCadastra" id="frmCadastra" onsubmit="return false;">
+                     <input type="hidden" name="token" value="<?php echo $token?>">
                     <div class="row">
                         <div class="col-md-1">
                             <div class="form-group">
@@ -121,24 +126,23 @@ require '../../vendor/autoload.php';
                               <input type="text" class="form-control" id="txtQtd" name="txtQtd">
                             </div>
                         </div> 
-                    </div>  
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="alert alert-danger" role="alert" >
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="fechar">×</a>
-                                <strong>Erro!</strong><span id="spErroMsg"></span>
-                            </div>
-                             <div class="alert alert-success"  role="alert" >
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="fechar">×</a>
-                                <strong>OK!</strong>&nbsp;O registro foi salvo!!!
-                            </div>
-                        </div>
                     </div>
+                    <div class="col-md-9">
+                        <div class="alert alert-danger" role="alert" >
+                            <strong>Erro!</strong><span id="spErroMsg"></span>
+                        </div>
+                        <div class="alert alert-success"  role="alert" >
+                           <strong>OK!</strong>&nbsp;O registro foi salvo!!!
+                        </div>
                 </form>    
+                
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id="btnSave"><span class="glyphicon glyphicon-save"></span>&nbsp;Salvar</button>
+          &nbsp;
+          &nbsp;
+          <button class='desativa btn btn-danger' href='ajax/database_ajax.php?action=desativacao' title='Desativar'><span class='glyphicon glyphicon-remove'></span>&nbsp;Desativar</button>
         </div>
       </div>
     </div>

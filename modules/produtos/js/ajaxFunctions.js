@@ -12,9 +12,6 @@ function pesquisaProduto(){
                     openModal($(this).attr('act'),$(this).attr('href'));
                });
                
-               $('.desativa').click(function(){
-                  desativaProduto($(this).attr('href'));
-               });
            }
 
     },'json');
@@ -22,7 +19,7 @@ function pesquisaProduto(){
 
 
 function formProduto(url){
-    $.get(url,function(json){
+    $.post(url,$('#frmCadastra').serialize(),function(json){
            if(json.erro != 0){
                alert(json.erro);
            }else{
@@ -45,9 +42,9 @@ function atuaLizaProduto(){
                $('.alert-success').addClass('hide');
                return false;
            }else{
-               $('#frmCadastra')[0].reset();
                $('.alert-success').removeClass('hide');
                $('.alert-danger').addClass('hide');
+               formProduto('ajax/database_ajax.php?action=alteracao&id='+json.id)
                return true; 
            }
     },'json');
@@ -57,12 +54,13 @@ function atuaLizaProduto(){
 function desativaProduto(url){
     
     if(confirm('Deseja desativar?')){
-        $.get(url,function(json){
+        $.post(url,$('#frmCadastra').serialize(),function(json){
                if(json.erro != 0){
                    alert(json.erro);
                }else{
                    alert('Produto desativado!');
                    pesquisaProduto(); 
+                   $('#modalCadastro').modal('hide');
                }
 
         },'json');

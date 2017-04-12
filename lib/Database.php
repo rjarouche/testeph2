@@ -27,14 +27,14 @@ class Database
     {
         try
         {
-            if (!isset(self::$conn)) {
-                self::$conn = new \PDO(self::$dbtype . ":host=" . self::$host . ";port=" . self::$port . ";dbname=" . self::$db.";charset=utf8", self::$user, self::$password);
+            if (!isset(static::$conn)) {
+                static::$conn = new \PDO(static::$dbtype . ":host=" . static::$host . ";port=" . static::$port . ";dbname=" . static::$db.";charset=utf8", static::$user, static::$password);
             }
         } catch (PDOException $i) {
             //se houver exceção, exibe
             die("Erro: <code>" . $i->getMessage() . "</code>");
         }
 
-        return (self::$conn);
+        return (static::$conn);
     }
 }

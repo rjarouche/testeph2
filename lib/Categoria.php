@@ -32,7 +32,7 @@ class Categoria extends Modelo
 
     public function setCategoria($valor)
     {
-        \Cadastro\Conexao\Validation::validateString($valor, 'categoria');
+        \Cadastro\Conexao\Validation::validateString($valor);
         $this->categoria = utf8_encode($valor);
     }
 

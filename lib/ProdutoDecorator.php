@@ -29,10 +29,6 @@ class ProdutoDecorator
                     </thead>
                     <tbody>";
         foreach ($produtos as $produto) {
-            //geração de HASH de segurança, para evitar que outro id seja modificado e se altere outro registro
-
-            
-
             $table .= "<tr>
                         <td class='tdNumber'>" . $produto->getIdproduto() . "</td>
                         <td>" . utf8_decode($produto->getProduto()) . "</td>
@@ -41,10 +37,8 @@ class ProdutoDecorator
                         <td class='tdNumber'>" . $produto->getQuantidade() . "</td>
                         <td class='tdDate'>" . \DateTime::createFromFormat('Y-m-d H:i:s', $produto->getDtcriacao())->format('d/m/Y H:i:s') . "</td>
                         <td class='tdDate'>" . \DateTime::createFromFormat('Y-m-d H:i:s', $produto->getDtalteracao())->format('d/m/Y H:i:s') . "</td>
-                        <th class='tdIcon'><button class='clsCasdastro' act='altera' href='ajax/database_ajax.php?action=alteracao&id=" . $produto->getIdproduto() ."' title='Editar'><span class='glyphicon glyphicon-edit'></span></button>
-                            &nbsp;
-                            &nbsp;
-                            <button class='desativa' href='ajax/database_ajax.php?action=desativacao&id=" . $produto->getIdproduto(). "' title='Desativar'><span class='glyphicon glyphicon-remove'></span></button>
+                        <th class='tdIcon'><button class='clsCasdastro btn btn-info' act='altera' href='ajax/database_ajax.php?action=alteracao&id=" . $produto->getIdproduto() ."' title='Editar'><span class='glyphicon glyphicon-edit'></span>&nbsp;Alterar</button>
+                            
                         </th>
                       </tr>";
         }
