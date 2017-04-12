@@ -4,6 +4,8 @@ require '../../vendor/autoload.php';
 /* 
   Index do cadastro de produtos
  */
+
+  
   $cat = new Cadastro\Conexao\CategoriaDAO();
   $categorias = $cat->getAllActiveCategorias();  
   $token = md5('secret'. rand());

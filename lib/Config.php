@@ -14,7 +14,8 @@ class Config {
     {}
     
     public static function getConfig($name){
-        include $_SERVER['DOCUMENT_ROOT'].'/cadastro_produtos/config.php';
+        
+        include dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
         return  $configs[$name];
     }
     

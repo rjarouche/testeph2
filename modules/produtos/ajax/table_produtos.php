@@ -3,7 +3,6 @@
 
 //autload do composer
 require '../../../vendor/autoload.php';
-
 $produtos = new Cadastro\Conexao\ProdutoDAO();
 
 //Variável controla o erro
