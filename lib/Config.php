@@ -5,7 +5,7 @@ namespace Cadastro\Conexao;
 class Config {
 
 
-
+    private static $configs;
     
     private function __construct() 
     {}
@@ -13,10 +13,13 @@ class Config {
     private function __clone() 
     {}
     
+    
+    
     public static function getConfig($name){
-        
-        include dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
-        return  $configs[$name];
+        if(!isset(self::$configs)){
+            self::$configs = include dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
+        }    
+        return  self::$configs[$name];
     }
     
     

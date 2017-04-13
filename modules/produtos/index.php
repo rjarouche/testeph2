@@ -1,6 +1,6 @@
 <?php
 //Autoload do composer
-require '../../vendor/autoload.php';
+require __DIR__.'/../../vendor/autoload.php';
 /* 
   Index do cadastro de produtos
  */

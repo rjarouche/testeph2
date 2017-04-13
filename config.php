@@ -1,5 +1,5 @@
 <?php
-$configs =
+return
 array(  
 
      'dbtype' => "mysql",
@@ -7,7 +7,5 @@ array(
      'port' =>   "3306",
      'user' =>   "root",
      'password' => "",
-     'db' =>      "produtos",
-
-
+     'db' =>      "produtos"
 );

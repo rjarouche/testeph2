@@ -2,7 +2,7 @@
 /* Ajax para exibir a pesquisa de produtos*/
 
 //autload do composer
-require '../../../vendor/autoload.php';
+require __DIR__.'/../../../vendor/autoload.php';
 $produtos = new Cadastro\Conexao\ProdutoDAO();
 
 //Variável controla o erro

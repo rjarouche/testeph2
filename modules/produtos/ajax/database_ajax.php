@@ -3,7 +3,7 @@
  * Ações de lateração e pesquisa ajax
  */
 //autload do composer
-require '../../../vendor/autoload.php';
+require __DIR__.'/../../../vendor/autoload.php';
 session_start();
 
 
