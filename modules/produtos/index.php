@@ -20,6 +20,8 @@ require __DIR__.'/../../vendor/autoload.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../../css/lay.css" rel="stylesheet" type="text/css"/>
+  <link href="../../css/table.css" rel="stylesheet" type="text/css"/>
   <script src="../../js/jquery.js" type="text/javascript"></script>
   <script src="../../js/bootstrap.js" type="text/javascript"></script>
   <!--Máscara para campos-->
@@ -32,6 +34,7 @@ require __DIR__.'/../../vendor/autoload.php';
   <script src="js/actions.js" type="text/javascript"></script>
 </head>
 <body>
+ <div class="preload"></div>
 <div class="container">
   <h2>Cadastro de produtos</h2>
   <p>Teste para a empresa PH2</p>         
@@ -93,6 +96,7 @@ require __DIR__.'/../../vendor/autoload.php';
             <div class="container">
                 <form action="POST" name="frmCadastra" id="frmCadastra" onsubmit="return false;">
                      <input type="hidden" name="token" value="<?php echo $token?>">
+                     <input type="hidden" name="token2" id="token2" value="">
                     <div class="row">
                         <div class="col-md-1">
                             <div class="form-group">

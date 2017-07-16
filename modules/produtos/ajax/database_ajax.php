@@ -12,13 +12,14 @@ if ($_SESSION['token'] === $_POST['token']) {
         $id = $_GET['id'];
         $produtoDao = new \Cadastro\Conexao\ProdutoDAO();
         $retorno = $produtoDao->getProdutoById($id)[0]->toArray();
-        $_SESSION['token2'] = md5('secret' . $retorno['idproduto']);
 
+
+        $retorno['token2'] = md5('secret' . $retorno['idproduto']);
         $retorno['erro'] = 0;
         echo json_encode($retorno);
     }
-
-    if ($_GET['action'] == 'atualiza') {
+    
+    if ($_GET['action'] == 'atualiza' ) {
         
         $produto = new \Cadastro\Produto\Produto();
         //santinizado e verificado na classe
@@ -30,7 +31,7 @@ if ($_SESSION['token'] === $_POST['token']) {
         if (trim($_POST['txtCodigo']) == "") {
             $retorno['id'] = $dao->insertProduto($produto);
         } else {
-            if ($_SESSION['token2'] === md5('secret' . $_POST['txtCodigo'])) {
+            if ($_POST['token2'] == md5('secret' . $_POST['txtCodigo'])) {
                 $produto->setIdproduto($_POST['txtCodigo']);
                 $dao->updateProduto($produto);
                 $retorno['id'] = $produto->getIdproduto();
@@ -42,7 +43,7 @@ if ($_SESSION['token'] === $_POST['token']) {
         echo json_encode($retorno);
     }
 
-    if ($_GET['action'] == 'desativacao' && $_SESSION['token2'] === md5('secret' . $_POST['txtCodigo'])) {
+    if ($_GET['action'] == 'desativacao' && $_POST['token2'] == md5('secret' . $_POST['txtCodigo'])) {
 
         $id = $_POST['txtCodigo'];
         $produtoDao = new \Cadastro\Conexao\ProdutoDAO();

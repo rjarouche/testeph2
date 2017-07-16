@@ -4,6 +4,9 @@ $(function(){
    $('#txtCodigo').mask('#######');
    $('#txtQtd').mask('#######');
    $('#txtPreco').mask('#.##0,00',{reverse: true});
+   
+   
+   
 
    
    //Evento ao chamar modal
@@ -65,11 +68,13 @@ $(function(){
    
 });
 
-$(document).ajaxStart(
-  $.blockUI({ message: 'Aguarde!!!!',
-          css: { backgroundColor: '#f00', color: '#fff'}
-} 
-)).ajaxComplete( $.unblockUI);
+
+ $(document).ajaxStart(function() {
+       $('.preload').fadeIn('fast');
+   }).ajaxComplete(function() {
+       $('.preload').fadeOut('fast');
+   });
+            
 
 
 

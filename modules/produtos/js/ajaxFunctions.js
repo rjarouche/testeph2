@@ -28,6 +28,7 @@ function formProduto(url){
                $('#selectCategoria').val(json.idcategoria);
                $('#txtPreco').val(json.preco);
                $('#txtQtd').val(json.quantidade);
+               $('#token2').val(json.token2);
            }
 
     },'json');
